@@ -170,7 +170,7 @@ exports.playCmd = (socket,rl) => {
                             log(socket,`CORRECTO - Lleva ${score} aciertos.`);
                             return playOne();
                         } else {
-                            log("INCORRECTO.");
+                            log(socket,"INCORRECTO.");
                             log(socket,`Fin del juego. Aciertos: ${score}`);
                             return rl.prompt();
                         }
@@ -230,7 +230,7 @@ exports.editCmd = (socket,rl,id) =>{
         })
         .catch(Sequelize.ValidationError, error => {
             errorlog(socket,'El quiz es erroneo:');
-            error.errors.forEach(({message}) => errorlog(message));
+            error.errors.forEach(({message}) => errorlog(socket,message));
         })
         .catch(error => {
             errorlog(socket,error.message);
